@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>투두리스트</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <section class="todoapp">
+      <header class="header">
+        <h1>todos</h1>
+        <input
+          class="new-todo"
+          placeholder="What needs to be done?"
+          autofocus=""
+        />
+      </header>
+      <section class="main">
+        <input id="toggle-all" class="toggle-all" type="checkbox" />
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list"></ul>
+      </section>
+      <footer class="footer">
+        <span class="todo-count"></span>
+        <ul class="filters">
+          <li>
+            <a href="#/" class="list-all">All</a>
+          </li>
+          <li>
+            <a href="#/active" class="list-active">Active</a>
+          </li>
+          <li>
+            <a href="#/completed" class="list-completed">Completed</a>
+          </li>
+        </ul>
+        <button class="clear-completed">Clear completed</button>
+      </footer>
+
+      <!-- <footer class="footer">
+        <span class="todo-count"></span>
+
+        <button class="clear-completed">Clear completed</button>
+      </footer> -->
+    </section>
+  </body>
+  <!-- <script src="js/helperFunctions.js"></script>
+  <script src="js/todosean.js"></script> -->
+  <!-- <script src="js/todofunction.js"></script>
+  <script src="js/todolist.js"></script> -->
+  <!-- <script src="js/todofunction2.js"></script>
+  <script src="js/todo2.js"></script> -->
+  <!-- <script src="js/todofunction3.js"></script>
+  <script src="js/todo3.js"></script> -->
+
+  <!-- <script src="js/todo_module.js"></script> -->
+  <!-- <script src="js/todo_module2.js"></script> -->
+  <script src="js/todo_module_complete.js"></script>
+  <!-- <script src="js/todo_module4.js"></script> -->
+
+  <script>
+    todoModule.start();
+  </script>
+</html>
