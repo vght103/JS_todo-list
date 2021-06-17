@@ -120,8 +120,7 @@
       toggleChkBox.classList = "toggle";
       toggleChkBox.checked = newTodoObj.completed;
       
-      toggleChkBox.dataset.todoChk = newTodoObj.completed;
-      
+
       
       // 토글 체크시 todo completed
       toggleChkBox.addEventListener("change", function(e){
@@ -133,7 +132,7 @@
         self.activeTodoCounting(e);
   
         newTodoObj.completed = !newTodoObj.completed;
-    
+      
         self.saveTodos();
       });
   
@@ -150,15 +149,8 @@
       deleteBtn.classList = "destroy";
       deleteBtn.addEventListener("click", function(e){
         //todoListItem.
-        var todoId = e.target.parentElement.parentElement.dataset.todoId;
-
-        var todoIndex = self.todosArray.findIndex(todo => todo.id == todoId);
-        self.todosArray.splice(todoIndex, 1);
-        // index 삭제
-        self.saveTodos();
-  
-        todoListItem.remove();
-        self.activeTodoCounting();
+        var liElement = e.target.parentElement.parentElement;
+        self.removeTodo(liElement)
       });
   
       var editInput = document.createElement("input");
@@ -184,6 +176,20 @@
       viewDiv.appendChild(toggleChkBox);
       viewDiv.appendChild(label);
       viewDiv.appendChild(deleteBtn);
+    },
+
+    removeTodo: function(element){
+      var todoId = element.dataset.todoId;
+
+      //1. remove todo in todosArray
+      var todoIndex = this.todosArray.findIndex(todo => todo.id == todoId);
+      this.todosArray.splice(todoIndex, 1);
+
+      //2. remove todo li Element
+      element.remove();
+
+      this.saveTodos();
+      this.activeTodoCounting();
     },
   
     todoCompleted: function(e){
@@ -228,18 +234,16 @@
         var completeChkBox = currentListItem.querySelector("div > input");
         
         completeChkBox.checked = allChecked;
-
-        var todoId = currentListItem.dataset.todoId;      
-        var todoAllChecked = completeChkBox.dataset.todoChk;
-
+      
         if(allChecked){
           currentListItem.classList.add("completed");
         } else {
           currentListItem.classList.remove("completed");
         }
-        self.saveTodos();
+        self.todosArray[i].completed = allChecked;
+        console.log(self.todosArray[i].completed );
       }
-      
+      self.saveTodos();
     },
   
     updateTodoAction:function(e){
@@ -342,12 +346,12 @@
         
   
         if(completeChkBox.checked){
-          var todoId = currentListItem.dataset.todoId;
-          var todoIndex = this.todosArray.findIndex(todo => todo.id == todoId);
-          console.log(this.todosArray)
-          this.todosArray.splice(todoIndex, 1);
-          currentListItem.remove();
-  
+          // var todoId = currentListItem.dataset.todoId;
+          // var todoIndex = this.todosArray.findIndex(todo => todo.id == todoId);
+          // console.log(this.todosArray)
+          // this.todosArray.splice(todoIndex, 1);
+          // currentListItem.remove();
+          this.removeTodo(currentListItem);
         }
       }
       this.saveTodos();
